@@ -22,3 +22,4 @@ app.set('view engine', 'handlebars');
 
 app.listen(PORT);
 
+//0 - establish route and server connection
