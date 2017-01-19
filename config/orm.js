@@ -35,17 +35,48 @@ var orm = {
 		connection.query(queryString, function(err, result){
 			if (err){
 				throw err;
+				console.log("err at 38");
 			}
 
 			cd(result);
 		});
 	},
 
-	insertOne: function(){
+	insertOne: function(table, cols, vals, cd){
+		var queryString = "INSERT INTO" + TABLE;
 
+			queryString += " (";
+			queryString += cols.toString();
+			queryString += ") ";
+			queryString += "VALUES (";
+			queryString += printQuestionMarks(vals.length);
+			queryString += ") ";
+
+		connection.query(queryString, vals, function(err, result){
+			if(err){
+				throw err;
+				console.log("err at 56");
+			}
+			cd(result);
+		});
 	},
 
-	updateOne: function(){
+	updateOne: function(table, objColVals, condition, cd){
+		var queryString = "UPDATE " + table;
+
+			queryString += " SET";
+			queryString += objToSql(objColVals);
+			queryString += " WHERE ";
+			queryString += condition;
+
+		connection.query(queryString, function(err, result){
+			if (err){
+				throw err;
+				console.log("err at 73");
+			}
+
+			cd(result);
+		})
 
 	}
 
