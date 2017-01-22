@@ -63,16 +63,16 @@ var orm = {
 
 	update: function(table, objColVals, condition, cd){
 		var queryString = "UPDATE " + table;
-		var condition = parseInt(condition);
+		//var condition = parseInt(condition);
 
 			queryString += " SET ";
 			queryString += objToSql(objColVals);
 			queryString += " WHERE ";
-			queryString += "id = " + condition;
+			queryString += condition;
 			//queryString += condition;
 
 
-			console.log("QUERYSTRING: " + queryString);
+			//console.log("QUERYSTRING: " + queryString);
 
 		connection.query(queryString, function(err, result){
 			if (err){

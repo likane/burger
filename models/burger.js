@@ -13,13 +13,17 @@ var burg = {
 		});
 	},
 
-	create: function(burger_name, cd) {
-		orm.create('burgers', ["burger_name, devoured"], { name: false }, cd);
+	create: function(cols, vals, cd) {
+		orm.create('burgers', cols, vals, function(result){
+			cd(result);
+		});
 	},
 
-	update: function(id, cd) {
+	update: function(objColVals, condition, cd) {
 		//var condition = 'id=' +id;
-		orm.update('burgers', {devoured: true}, condition, cd); 
+		orm.update('burgers', objColVals, condition, function(result){
+			cd(result);
+		}); 
 	}
 };
 

@@ -9,7 +9,7 @@ var connection = require('./config/connection.js');
 
 //import routes and provide host connection
 var routes = require('./controllers/burgers_controller.js');
-
+var PORT = 3000;
 var app = express();
 
 app.use(bodyParser.json());
@@ -19,8 +19,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(methodOverride("_method"));
 
-
-var PORT = 3000;
+var exphbs = require('express-handlebars');
 
 //set hanldebars as the default templating engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
