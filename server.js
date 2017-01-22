@@ -10,8 +10,15 @@ var connection = require('./config/connection.js');
 //import routes and provide host connection
 var routes = require('./controllers/burgers_controller.js');
 
-
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+app.use(methodOverride("_method"));
+
 
 var PORT = 3000;
 
@@ -19,7 +26,9 @@ var PORT = 3000;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-
+app.use('/', routes);//attaches express to controller methods file
+app.use('/update', routes);
+app.use('/create', routes);
 app.listen(PORT);
 
 //0 - establish route and server connection
