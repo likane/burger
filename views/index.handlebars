@@ -40,9 +40,23 @@
 		{{/each}}
 	</div>
 
-	<div>
+	<h2>Add a Burger!</h2>
+
+	<div class ="addSandwitch">
+		<form class="create-update-form" action="burgers/create" method="POST">
 		
-			<input type="text" action="burgers/updae/{{this.id}}?_method=PUT" method="POST">
+			
+			<div class="form-group">
+    			<label>Burger Name:</label>
+   			    <input type="text" id="burgerName" name="burger_name">
+ 			 </div>
+
+  			<div class="form-group">
+    			<label>Devoured?</label><br>
+    			<input type="radio" name="devoured" value="1" checked> Devoured!<br>
+    			<input type="radio" name="devoured" value="0"> Ready To Eat
+  			</div>
+
 		
 
 		<button type="submit">Submit</button>
