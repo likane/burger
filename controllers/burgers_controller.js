@@ -8,18 +8,18 @@ router.get('/', function(request, result){
 });
 
 router.get('/burgers', function(request, result){
-	burger.all(function(data){
+	burger.selectAll(function(data){
 		var allObject = {
 			burger: data
 		};
 
-		console.log('LINE 23;;;;CONTROLLER:' + allObject);
+		//console.log('LINE 23;;;;CONTROLLER:' + allObject);
 		result.render('index', allObject);
 	});
 });
 
 router.post('/burgers/create', function(request, result){
-	burger.create([
+	burger.insertOne([
 			 'burger_name', 'devoured'
 		], [
 			request.body.burger_name, request.body.devoured
@@ -30,10 +30,10 @@ router.post('/burgers/create', function(request, result){
 
 router.put('/burgers/update/:id', function(request, result){
 
-	var condition = request.params.id;
-	console.log(condition);
+	var condition = "id = " + request.params.id;
+	//console.log(condition);
 
-	burger.update({
+	burger.updateOne({
 		devoured: request.body.devoured
 	}, condition, function(){
 		result.redirect('/burgers');
